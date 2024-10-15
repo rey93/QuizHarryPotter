@@ -1,0 +1,45 @@
+@import './styles/vars.scss';
+
+body, html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-between;
+    justify-content: space-between;
+    font-family: monospace;
+    background-image: url('./assets/bg-body.png');
+    background-size: cover;
+    background-position: left;
+    background-repeat: no-repeat;
+    color: $foreground-color;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profiles{
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    height: 120px;
+    margin: 5px;
+
+    img{
+        width: 40px;
+        border-radius: 30px;
+        margin: 5px;
+        cursor: pointer;
+
+    }
+}
