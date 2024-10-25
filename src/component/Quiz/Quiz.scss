@@ -77,25 +77,39 @@ h3{
     margin: 0;
 }
 .quiz-container {
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 25px;
     width: 450px;
     height: 450px;
     background: $bg-color;
     border-radius: 10px;
     margin-top: 100px;
     box-sizing: border-box;
-    right: 350px;
-    top: 50px;
+
      
+}
+.h2-question{
+    margin-bottom: 10px;
+}
+.label-container{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    max-height: 220px;
+    overflow-y: auto;
 }
 label {
     display: flex;
     justify-content: left;
-    align-items: center;
-    margin: 0px;
-    padding: 0px;
+    align-items: baseline;
     p{
-        margin: 15px;
+        margin: 12px;
+        text-align: left;
     }
 }
 
@@ -113,6 +127,9 @@ input[type="radio"] {
     margin: 0px;
    
 }
+.question-info{
+    display: inline-block;
+}
 .active-question-no{
     font-size: 40px;
     font-weight: 500;
@@ -128,15 +145,37 @@ h2{
     font-weight: 500;
     margin: 0;
     padding-top: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     color: #fff4a3;
 }
 
 .footer{
     display: flex;
     justify-content: right;
+    position: fixed; 
+    bottom: 90px; /* Espacio desde la parte inferior */
+    left: 73%; /* Centra horizontalmente */
+
 }
-button{
+.button-quiz{
+    background: #516e8c;
+    border-radius: 10px;
+    font-size: 18px;
+    color: $accent-color;
+    padding: 10px 42px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+
+    &:disabled{
+        background-color: $foreground-color;
+        color: $disabled-color;
+        cursor: pointer;
+    }
+}
+.button-name{
     background: #516e8c;
     border-radius: 10px;
     font-size: 18px;
@@ -181,7 +220,6 @@ button{
 p{
     text-align: center;
     font-size: 20px;
-    margin-top: 0px;
 }
 
 .result-data {
@@ -227,4 +265,17 @@ p{
         margin-top: 30px;
     }
     
+}
+
+.button-last{
+    background: #516e8c;
+    border-radius: 10px;
+    font-size: 18px;
+    color: $accent-color;
+    padding: 10px 42px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 40%;
 }

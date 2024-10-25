@@ -1,5 +1,10 @@
 import { useState } from "react";
 import './Quiz.scss';
+import FistPage from '../FistPage/FirstPage.jsx'
+import Questions from "../Questions/Questions.jsx";
+import Results from "../Results/Results.jsx";
+import Houses from "../Houses/Houses.jsx";
+
 const Quiz = ({ questions }) =>{
 
     const [responses, setResponses] = useState(Array(questions.length).fill(''));
@@ -120,89 +125,37 @@ const Quiz = ({ questions }) =>{
                 
             {!showName ? (
                 
-                <div className="quiz-container-name">
-                    <p>Para entrar a nuestro escuela de programación para Magos
-                       deberás responder una serie de preguntas y así yo el sombrero mágico
-                       escojere a que casa pertenecerás. <br></br>!Suerte en tus respuestas¡
-                    </p>
-                    
-                    <h1>Escriba su nombre</h1>
-                    <input 
-                    className="input-name"
-                    type="text"
-                    value={name}
-                    onChange={handleNameChange}
-                    placeholder="Escriba su nombre"
-                    />
-                    <p className="error">{errorName}</p>
-                    <button className="button-name" onClick={handleNameSubmit}>Guardar</button>
-                </div>
+                <FistPage 
+                    name = {name}
+                    error = {errorName}
+                    handleNameChange = {handleNameChange}
+                    handleNameSubmit = {handleNameSubmit}
+                />
                 
                 ) : (
                         <>
                             {!showResult ? 
                             (
-                                <div className="quiz-container">
-                                    <span className="active-question-no">{currentQuestion + 1}</span>
-                                    <span className="total-question">/{questions.length}</span>
-                                    <h2>{question}</h2>
-                                        {
-                                            options.map((answer, index)=>(
-                                                <label key={index}>
-                                                    <input
-                                                        type="radio"
-                                                        name={`question-${currentQuestion}`}
-                                                        value={answer.charAt(0)} // A, B, C o D
-                                                        checked={responses[currentQuestion] === answer.charAt(0)}
-                                                        onChange={() => onAnswerClick(currentQuestion, answer.charAt(0))}
-                                                    />
-                                                    <p>{answer}</p>
-                                                </label>
-                                                
-                                            ))
-                                        }
-                                    <div className="footer">
-                                        <button onClick={goToNextQuestion}>
-                                            {currentQuestion === questions.length - 1 ? "Finish" : "Next"}
-                                        </button>
-                                    </div>
-                                </div>
+                                <Questions 
+                                    currentQuestion={currentQuestion}
+                                    questions={questions}
+                                    question={question}
+                                    options={options}
+                                    responses={responses}
+                                    onAnswerClick={onAnswerClick}
+                                    goToNextQuestion={goToNextQuestion}
+                                />
                             ) : (
                                 
-                                      <div className="result-data">  
-                                            <h1>Final Results<hr></hr></h1>
-                                            
-                                            <h1>Congratulations</h1>
-                                            <h3>
-                                                <span>{name}</span>
-                                            </h3>
-                                            <p>
-                                            Usted pertecererá a la casa 
-                                            </p>
-                                            <span>{score}</span>
-                                            <button onClick={onTryAgain}>Try again</button>
-                                       </div>
+                                 <Results
+                                    name={name}
+                                    score={score} 
+                                    onTryAgain={onTryAgain}
+                                  />
                             )}
                         </>
             )}
-            <div className="house">
-                    <div className="gryffindor">
-                        <img src={'src/assets/gryffindor.png'} />
-                        <h3>Gryffindor (Frontend)</h3>
-                    </div>
-                    <div className="slytherin">
-                        <img src={'src/assets/hufflepuff.png'} />
-                        <h3>Slytherin (Backend)</h3>
-                    </div>
-                    <div className="ravenclaw">
-                        <img src={'src/assets/ravenclaw.png'} />
-                        <h3>Ravenclaw (Movile)</h3>
-                    </div>
-                    <div className="hufflepuff">
-                        <img src={'src/assets/hufflepuff.png'} />
-                        <h3>Hufflepuff (Data)</h3>
-                    </div>
-            </div>
+                <Houses />
         </div>
     );
 }
